@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+</head>
+<style type="text/css"> 
+ *{ 
+ padding: 0; 
+ margin: 0; 
+ } 
+ .shooter{ 
+ width: 600px; 
+ height: 60px; 
+ /*background: black;*/ 
+ margin: 0 auto; 
+ } 
+ .shooter input{ 
+ width: 300px; 
+ height: 40px; 
+ border: none; 
+ border-radius: 7px; 
+ box-shadow: 0 0 8px rgba(182,195,214,0.6)inset; 
+ padding-left: 15px; 
+ margin-top: 10px; 
+ } 
+ .shooter button{ 
+ width: 80px; 
+ height: 40px; 
+ border: none; 
+ margin-left: 10px; 
+ background-color:#339B53; 
+ border-radius:8px; 
+ color: white; 
+ cursor: pointer; 
+ } 
+  
+ .shooter button:hover{ 
+ font-size: 14px; 
+ background:#008000; 
+ } 
+ .content{ 
+ width: 100%; 
+ height: 600px; 
+ background: url(bg.png) no-repeat fixed top; 
+ position: relative; 
+ background-size:auto;
+
+ overflow: hidden; 
+ } 
+  
+ .bullet{ 
+ position: absolute; 
+ /*right: 0;*/ 
+ /*left:1600px;*/ 
+ word-break: keep-all; 
+ /*不让单词折行*/ 
+  
+  
+ } 
+  
+ </style> 
+
+ 
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.js"></script>
+
+<script>  
+window.addEventListener("load", function(evt) {
+    var output = document.getElementById("output");
+    var input = document.getElementById("input");
+    var input_to = document.getElementById("input_to");
+    var input_from = document.getElementById("input_from");
+    var ws;
+    var print = function(message) {
+        var d = document.createElement("div");
+        d.innerHTML = message;
+        output.appendChild(d);
+    };
+    var customer_id="5225"
+    ws = new WebSocket("ws://" ++ document.location.host +"/ws?customer_id="+customer_id+"&username=xaavvcc");
+    ws.onopen = function(evt) {
+            
+    }
+    ws.onclose = function(evt) {
+        
+        ws = null;
+    }
+    ws.onmessage = function(evt) {
+        //print("RESPONSE: " + evt.data);
+
+
+        // var msg = $("input").val(); 
+        //取出输入框内容
+        var obj = JSON.parse(evt.data) 
+        
+        if(msg.length > 200){ 
+        
+            alert("字数不得超过15个！"); 
+            return; 
+        } 
+        
+        var bullet = $("<div>"); 
+        //生成一条弹幕 
+        bullet.text(obj.from + ': ' + obj.msg); 
+        //将输入框内容放置到div中 
+        bullet.addClass("bullet"); 
+        //为bullet这个div添加样式bullet 
+        bullet.css("top",Math.round(Math.random()*500)); 
+        //随机设置弹幕位置 
+        bullet.css("left","1600px"); 
+        bullet.css("font-size",Math.round(Math.random()*60)+12+"px"); 
+        bullet.css("color","rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")"); 
+        // alert(window.getComputedStyle(bullet,null).width); 
+        bullet.animate({ 
+            left:-1000//此处视为bug，应该随着弹幕的长短而变化 
+            // 越大越慢
+        }, Math.round(Math.random()*9000)+3000,"linear", function(){ 
+            bullet.remove(); 
+        //当运动结束时，删除弹幕 
+        }); 
+        
+        $(".content").append(bullet); 
+        //将弹幕添加到屏幕中 
+    
+
+    }
+    ws.onerror = function(evt) {
+        print("ERROR: " + evt.data);
+    } 
+
+  
+    document.getElementById("send").onclick = function(evt) {
+        if (!ws) {
+            return false;
+        }
+
+        msg='{"data_list":[{"from": "'+ input_from.value +'" , "msg":"' + input.value + '","to":"' + input_to.value+'"}] }'
+        //print("SEND: " + msg);
+        ws.send(msg);
+        return false;
+    };
+  
+});
+</script>
+
+<body>
+    <div class="content"> 
+    
+    </div> 
+
+
+    <table>
+        <tr><td valign="top" width="50%">
+        <p>输入 弹幕内容 和 发送昵称 后，点击发送 进行发送弹幕</p>
+
+        </br></br>
+        <form>
+        
+        <p>发送昵称: <input id="input_from" type="text" value="路人">
+            弹幕内容: <input id="input" type="text" value="快乐!">
+             <input id="input_to" type="text" value="" hidden>
+            
+        <button id="send">发送</button>
+        </form>
+        </td><td valign="top" width="50%">
+        <div id="output"></div>
+        </td></tr>
+    </table>
+    
+
+
+</body>
+</html>
