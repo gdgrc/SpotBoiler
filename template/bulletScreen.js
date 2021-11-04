@@ -21,19 +21,8 @@ window.addEventListener("load", function(evt) {
         ws = null;
     }
     ws.onmessage = function(evt) {
-        //print("RESPONSE: " + evt.data);
-
-
-        // var msg = $("input").val(); 
         //取出输入框内容
         var obj = JSON.parse(evt.data) 
-        
-        if(msg.length > 200){ 
-        
-            alert("字数不得超过15个！"); 
-            return; 
-        } 
-        
         var bullet = $("<div>"); 
         //生成一条弹幕 
         bullet.text(obj.from + ': ' + obj.msg); 
@@ -45,7 +34,6 @@ window.addEventListener("load", function(evt) {
         bullet.css("left","1600px"); 
         bullet.css("font-size",Math.round(Math.random()*60)+12+"px"); 
         bullet.css("color","rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")"); 
-        // alert(window.getComputedStyle(bullet,null).width); 
         bullet.animate({ 
             left:-1000//此处视为bug，应该随着弹幕的长短而变化 
             // 越大越慢
@@ -54,40 +42,21 @@ window.addEventListener("load", function(evt) {
         //当运动结束时，删除弹幕 
         }); 
         
-        $(".content").append(bullet);
-
-        lotteryFilter({
-            //cmd: body.cmd,
-            //color: body.info[0][3],
-            uid: obj.from,
-            name: obj.from,
-            //admin: body.info[2][2],
-            //vip: body.info[2][3],
-            //svip: body.info[2][4],
-            text:"tezt",
-            medal_name:  "没勋章",
-            medal_level:  "0",
-            //user_level: body.info[4][0],
-            //guard: body.info[7],
-            roomid: p_roomid,
-        }) 
-        //将弹幕添加到屏幕中 
-    
-
+        $(".content")[0] && $(".content").append(bullet);
     }
     ws.onerror = function(evt) {
         print("ERROR: " + evt.data);
     } 
 
-    document.getElementById("send").onclick = function(evt) {
+    document.getElementById("send") && (document.getElementById("send").onclick = function(evt) {
         if (!ws) {
             return false;
         }
 
         msg='{"data_list":[{"from": "'+ input_from.value +'" , "msg":"' + input.value + '","to":"' + input_to.value+'"}] }'
-        //print("SEND: " + msg);
         ws.send(msg);
+        alert('弹幕已发送成功，请留意大屏幕')
         return false;
-    };
+    });
   
 });
