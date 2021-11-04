@@ -43,12 +43,13 @@ overflow: hidden;
 } 
     
 .bullet{ 
+width: 1600px;
 position: absolute; 
 /*right: 0;*/ 
 /*left:1600px;*/ 
 word-break: keep-all; 
-/*不让单词折行*/ 
-    
-    
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
 } 
 
