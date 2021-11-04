@@ -161,15 +161,4 @@ window.addEventListener("load", function(evt) {
 
     };
   
-    document.getElementById("send").onclick = function(evt) {
-        if (!ws) {
-            return false;
-        }
-
-        msg='{"data_list":[{"from": "'+ input_from.value +'" , "msg":"' + input.value + '","to":"' + input_to.value+'"}] }'
-        //print("SEND: " + msg);
-        ws.send(msg);
-        return false;
-    };
-  
 });
