@@ -1,0 +1,158 @@
+html,
+body {
+    height: 100%;
+    background: #ddd;
+}
+
+input[type=checkbox] {
+    transform: scale(1.2);
+}
+
+.v-middle {
+    vertical-align: middle;
+}
+
+.info {
+    line-height: 40px;
+}
+
+#content {
+    line-height: 30px;
+    background: mediumpurple;
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.clean,
+.boom {
+    width: 100%;
+    line-height: 50px;
+    display: block;
+    color: #fff;
+    font-size: 24px;
+}
+
+.start,
+.end {
+    line-height: 50px;
+    display: inline-block;
+    color: #fff;
+    font-size: 24px;
+}
+
+.start {
+    width: 50%;
+}
+
+.green {
+    background: green;
+}
+
+.darkgreen {
+    background: darkgreen;
+}
+
+.end {
+    width: 100%;
+    background: indianred;
+}
+
+.btn {
+    border-radius: 0;
+    border: 0;
+}
+
+.boom,
+.boom:active,
+.boom:focus,
+.boom:active:focus,
+.boom:active:hover {
+    background: #444;
+    border-color: #000;
+}
+
+.boom:hover {
+    background: #000;
+    border-color: #000;
+}
+
+.clean,
+.storage_clean {
+    background: deepskyblue;
+}
+
+.form-control {
+    /* width: 15%; */
+    line-height: 22px;
+    color: #000;
+    outline: none;
+    box-sizing: border-box;
+    padding-left: 5px;
+    text-align: center;
+}
+
+.danmaku_pool,
+.lottery_pool {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 400px;
+}
+
+.danmaku_content,
+.lottery_content {
+    height: 370px;
+    overflow: auto;
+}
+
+.danmu,
+.danmaku_info {
+    border-width: 0 1px 1px;
+    border-style: solid;
+    border-color: #0df;
+    background: #fff;
+    width: 100%;
+    line-height: 30px;
+    /*min-height: 40px;*/
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.danmu div {
+    display: inline-block;
+}
+
+/*.danmaku_info, .lottery_member {
+    position: absolute;
+    margin-bottom: 30px;
+}*/
+.lottory,
+.lottery_member {
+    border: 1px solid #f6be18;
+    border-bottom: 0;
+    background: #e2f93321;
+    width: 100%;
+    line-height: 30px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.arr_list {
+    width: 100%;
+    line-height: 30px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.winner_box{
+    height: 150px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #000;
+    background-color: rgba(255,255,255,0.5) ;
+    overflow-y: auto;
+}
