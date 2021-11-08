@@ -49,10 +49,11 @@ var dynamicLoading = {
         head.appendChild(script);
     }
 }
+
 function initLotterySurface(lotteryList){
 	console.log("lotteryList: ",lotteryList)
     //初始化皮肤
-    if(localStorage.getItem("pf")){
+    /*if(localStorage.getItem("pf")){
 		var	pf = localStorage.getItem("pf");
 		dynamicLoading.css("./css/style"+pf+".css");
 		$("#bodybg img").attr("src","./images/bodybg"+pf+".jpg");
@@ -64,11 +65,11 @@ function initLotterySurface(lotteryList){
     //初始化标题
     if(localStorage.getItem("title")){
 		$("#title").val(localStorage.getItem("title"));
-	}
+	}*/
     $(".top").text($("#title").val());
     
     //频率模式本地存储  	 
-	if(localStorage.getItem("ms")){
+	/*if(localStorage.getItem("ms")){
 		pl = localStorage.getItem("ms");
 		$("input[name=ms][value="+pl+"]").attr("checked",true);
 	}
@@ -78,13 +79,11 @@ function initLotterySurface(lotteryList){
 		$(".ss").html(ssHtml);
 	}
 	
-	//已经取消的输入
-	//var inputItemCount = prompt("请输入参与抽奖人数(请输入数字，输入非数字会按默认人数计算)。");
-	
+
 	//本地排名信息存储
 	if(localStorage.getItem("itemCount")){
 		itemCount=localStorage.getItem("itemCount");
-	}
+	}*/
     //本地设定回显  	 
 	$("#personCount").val(itemCount);
 	
@@ -181,86 +180,35 @@ function initLotterySurface(lotteryList){
 			if(!isRun){
 				//取得当前选中号码
 				var it = $(".item.active").text();
-				//停止跑马灯
-				runingmic.pause();
-				//Math.floor($(".sequence li").size()/ts)
 				
-				//播放中奖音效
-				pausemic.currentTime = 0;
-				pausemic.play();
 
-				//中奖号处理
-				var it=Number(it);
-                var r;
-                var n='很遗憾，什么都没抽中';
-                var j1='一等奖：蒂爵公司提供饰品一件（价值3000元）';
-                var j2='二等奖：蒂爵公司提供饰品一件（价值1000元）';
-                var j3='三等奖：U盘一件';
-                var j4='四等奖：公仔一件';
-                switch(it){
-                    case 28: 
-                        r=j1;
-                        break;
-                    case 35:
-                    case 75:
-                    case 93: 
-                        r=j2;
-                        break;
-                    case 36:
-                    case 23:
-                    case 78:
-                    case 25:
-                    case 73:
-                    case 88:
-                    case 44:
-                    case 90:
-                    case 22:
-                    case 98: 
-                        r=j3;
-                        break;
-                    case 4:
-                    case 8:
-                    case 12:
-                    case 45:
-                    case 76:
-                    case 83:
-                    case 87:
-                    case 24:
-                    case 99:
-                    case 110:
-                    case 120:
-                    case 85:
-                    case 87:
-                    case 2:
-                    case 5:
-                    case 9:
-                    case 13:
-                    case 111:
-                    case 77:
-                    case 20: 
-                        r=j4;
-                        break;
-                    default:
-                        r=n;
-                }
-                $('.ss ol').append('<li data-number='+it+'>'+it+"号："+r+'；</li>');
-                if(r==n){
-                    r='<h3>'+r+'！</h3>';
-                }else{
-                    r='<h2>恭喜您，抽得'+r+'！</h2>';
-                }
-                var dd = dialog({
-                        title: '抽奖结果',
-                        content: r,
-                        okValue: '确定'
-                    });
-                dd.show();
-                localStorage.setItem("sequence",$(".ss").html()); 
-				$(".item.active").addClass("ignore");
-				$(".item.active").pulsate({
-					color: zzs,        //#98ff98
-					repeat: 5
-				});
+				if(it!=""){
+					//停止跑马灯
+					runingmic.pause();
+					//播放中奖音效
+					pausemic.currentTime = 0;
+					pausemic.play();
+
+					//中奖号处理
+					
+					$('.ss ol').append('<b>'+it+'</b>');
+				
+					r='<h2>恭喜 '+it+' 中奖！</h2>';
+					
+					var dd = dialog({
+							title: '抽奖结果',
+							content: r,
+							okValue: '确定'
+						});
+					dd.show();
+					localStorage.setItem("sequence",$(".ss").html()); 
+					$(".item.active").addClass("ignore");
+					$(".item.active").pulsate({
+						color: zzs,        //#98ff98
+						repeat: 5
+					});
+				}
+				
 			}else{
 				$(".active").removeClass("active");
 				runingmic.play();
@@ -270,38 +218,7 @@ function initLotterySurface(lotteryList){
 		e.preventDefault();
 	});
 	
-	//打开高级设置窗口	 
-	$("a.config").click(function(){
-		pause=true;
-		runingmic.pause();
-		var d = dialog({
-			title: '抽奖参数设定',
-		    content: $(".model"),
-		    okValue: '确定',
-		    ok: function () {
-		    	if($("#reset:checked").val()&&confirm("点击确定将清空抽奖结果。")){
-		    		localStorage.removeItem("sequence");
-		    	}
-		    	if($("#personCount").val()){
-		    		localStorage.setItem("itemCount",$("#personCount").val());
-		    	}
-		   		if($("#itemk").val()){
-		   			localStorage.setItem("itemk",$("#itemk").val());
-		    	}
-		   		if($("#itemg").val()){
-		    		localStorage.setItem("itemg",$("#itemg").val());
-		    	}
-		    	localStorage.setItem("title",$("#title").val());
-		    	localStorage.setItem("ms",$("input[name=ms]:checked").val());
-		    	localStorage.setItem("pf",$("input[name=pf]:checked").val());
-		    	
-		    	window.location.reload();
-		    },onclose: function () {
-		        pause=false;
-		    }
-			});
-			d.show();
-		 });
+	
 	
 	//清除错误中奖号
 	$("body").on("click",".item.ignore",function(){

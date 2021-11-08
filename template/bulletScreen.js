@@ -1,4 +1,7 @@
-
+var fns = []
+function registerBulletFn(fn){
+    fns.push(fn)
+}
 window.addEventListener("load", function(evt) {
     
     var output = document.getElementById("output");
@@ -41,21 +44,27 @@ window.addEventListener("load", function(evt) {
             bullet.remove(); 
         //当运动结束时，删除弹幕 
         }); 
-        lotteryFilter({
-                      //cmd: body.cmd,
-                        //color: body.info[0][3],
-                        uid: obj.from,
-                        name: obj.from,
-                        //admin: body.info[2][2],
-                        //vip: body.info[2][3],
-                        //svip: body.info[2][4],
-                        text:"tezt",
-                        medal_name:  "没勋章",
-                        medal_level:  "0",
-                        //user_level: body.info[4][0],
-                        //guard: body.info[7],
-                        roomid: p_roomid,
-        }) 
+
+        var bulletData = {
+            //cmd: body.cmd,
+              //color: body.info[0][3],
+              uid: obj.from,
+              name: obj.from,
+              //admin: body.info[2][2],
+              //vip: body.info[2][3],
+              //svip: body.info[2][4],
+              text:"tezt",
+              medal_name:  "没勋章",
+              medal_level:  "0",
+              //user_level: body.info[4][0],
+              //guard: body.info[7],
+              roomid: p_roomid,
+        }
+        for (var i=0;i<fns.length;i++)
+        { 
+            fns[i](bulletData)
+        }
+        //lotteryFilter(bulletData) 
         $(".content")[0] && $(".content").append(bullet);
     }
     ws.onerror = function(evt) {

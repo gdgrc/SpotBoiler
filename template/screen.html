@@ -5,10 +5,7 @@
 <meta charset="utf-8">
 <title>快乐抽奖</title>
 
-	<link href="./surface_lottery/css/style.css" type="text/css" rel="stylesheet" media="screen, projection">
-	<link href="./surface_lottery/css/style1.css" type="text/css" rel="stylesheet" media="screen, projection">
-	<link href="./surface_lottery/css/ui-dialog.css" type="text/css" rel="stylesheet" media="screen, projection">
-
+	
 </head>
 <link rel="stylesheet" type="text/css" href="bulletScreen.css" />
 <link rel="stylesheet" type="text/css" href="lottery.css" />
@@ -80,15 +77,8 @@
 <script type="text/javascript" src="lottery.js"></script>
 <script type="text/javascript" src="bulletScreen.js"></script>
 
-<audio id="runingmic" class="hide" loop><source src="./surface_lottery/music/runing.wav"></audio>
-<audio id="pausemic" class="hide"><source src="./surface_lottery/music/stop.mp3"></audio>
-<script type="text/javascript" src="./surface_lottery/js/app.js"></script>
-<script type="text/javascript">
- document.getElementById("boom").addEventListener("click", function (evt) {
-	 	console.log("good boom2")
-        var lotteryList = getlotteryList()
-        initLotterySurface(lotteryList)
- });
+<script type="text/javascript" >
+registerBulletFn(lotteryFilter)
 </script>
 
 </html>
