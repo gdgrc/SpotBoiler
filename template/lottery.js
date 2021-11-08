@@ -7,10 +7,16 @@ var medal_level_min = 1,
     user_level_max = 60,
     danmaku_setting,
     pass = 0;
+
+function getlotteryList(res) {
+
+    return lottery_arr
+}
+
 // 普通模式
 function lotteryFilter(res) {
   
-    //			console.log(res.uid);
+    //	console.log(res.uid);
     var danmaku_content = '<div class="danmu"><div class="fans-medal-item level-' + res.medal_level +
         '"><span class="label">' + res.medal_name + '</span><span class="level">' + res.medal_level +
         '</span></div><div class="level-' + res.medal_level +
@@ -39,13 +45,13 @@ function lotteryFilter(res) {
         if ($(".lottory").length >= 15) {
             $(".lottory").eq(0).remove()
         }
-        console.log('%c 【' + res.name + '[ uid: ' + res.uid + ' ]】成为了萌萌兽的朋友交易对象', "color: green");
+        console.log('%c 【' + res.name + '[ uid: ' + res.uid + ' ]】成为了新的抽奖队伍成员', "color: green");
         //					console.log(lottery_arr)
         //					$('.arr_list').remove();
         //					var arr_list = '<div class="arr_list" style="font-size: 12px;">' + lottery_arr + '</div>';
         //					$('.lottery_pool').eq(0).prepend(arr_list);
     } else {
-        console.log('%c 【' + res.name + '[ uid: ' + res.uid + ' ]】已经在等待被黑幕的队伍中了！', "color: red");
+        console.log('%c 【' + res.name + '[ uid: ' + res.uid + ' ]】已经在等待抽奖的队伍中了！', "color: red");
     }
     $('.lottery_member').remove();
     $('.lottery_info').eq(0).prepend('<div class="lottery_member" style="color: blue; ">当前非洲人的数量为：' +
@@ -69,7 +75,10 @@ window.addEventListener("load", function(evt) {
     })
 
     document.getElementById("boom").onclick = function (evt) {
+
         console.log('good boom')
+        
+
         if (lottery_arr.length) {
             var lucky_numarr = [];
             var lucky_numarrnew = [];
