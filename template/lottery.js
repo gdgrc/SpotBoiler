@@ -15,8 +15,8 @@ function getlotteryList(res) {
 
 // 普通模式
 function lotteryPureFilter(res) {
-  
-    if ($.inArray(res.uid, lottery_contrast_arr) == -1) {
+    var index = $.inArray(res.uid, lottery_contrast_arr)
+    if (index == -1) {
       
         lottery_arr.push([res.uid, res.name, res.medal_name, res.medal_level]);
         lottery_contrast_arr.push(res.uid);
@@ -27,6 +27,8 @@ function lotteryPureFilter(res) {
         //					var arr_list = '<div class="arr_list" style="font-size: 12px;">' + lottery_arr + '</div>';
         //					$('.lottery_pool').eq(0).prepend(arr_list);
     } else {
+        lottery_arr[index]=[res.uid, res.name, res.medal_name, res.medal_level]
+        
         console.log('%c 【' + res.name + '[ uid: ' + res.uid + ' ]】已经在等待抽奖的队伍中了！', "color: red");
     }
 }

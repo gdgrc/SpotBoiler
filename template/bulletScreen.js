@@ -2,6 +2,30 @@ var fns = []
 function registerBulletFn(fn){
     fns.push(fn)
 }
+
+var visitorId = ""
+
+const fpPromise = new Promise((resolve, reject) => {
+const script = document.createElement('script')
+script.onload = resolve
+script.onerror = reject
+script.async = true
+script.src = 'https://cdn.jsdelivr.net/npm/'
+    + '@fingerprintjs/fingerprintjs@3/dist/fp.min.js'
+document.head.appendChild(script)
+})
+.then(() => FingerprintJS.load())
+
+// Get the visitor identifier when you need it.
+fpPromise
+.then(fp => fp.get())
+.then(result => {
+    // This is the visitor identifier:
+    visitorId= result.visitorId
+    
+})
+
+
 window.addEventListener("load", function(evt) {
     
     var output = document.getElementById("output");
@@ -25,10 +49,12 @@ window.addEventListener("load", function(evt) {
     }
     ws.onmessage = function(evt) {
         //取出输入框内容
+        
         var obj = JSON.parse(evt.data) 
+        console.log(evt.data)
         var bullet = $("<div>"); 
         //生成一条弹幕 
-        bullet.text(obj.from + ': ' + obj.msg); 
+        bullet.text("@" + obj.fromName + ': ' + obj.msg); 
         //将输入框内容放置到div中 
         bullet.addClass("bullet"); 
         //为bullet这个div添加样式bullet 
@@ -49,7 +75,7 @@ window.addEventListener("load", function(evt) {
             //cmd: body.cmd,
               //color: body.info[0][3],
               uid: obj.from,
-              name: obj.from,
+              name: obj.fromName,
               //admin: body.info[2][2],
               //vip: body.info[2][3],
               //svip: body.info[2][4],
@@ -75,9 +101,10 @@ window.addEventListener("load", function(evt) {
         if (!ws) {
             return false;
         }
-
-        msg='{"data_list":[{"from": "'+ input_from.value +'" , "msg":"' + input.value + '","to":"' + input_to.value+'"}] }'
-        ws.send(msg);
+        msg = {"data_list":[{"fromName":input_from.value,"from":visitorId,"msg":input.value,"to":input_to.value}] }
+        
+        //msg='{"data_list":[{"fromName": "' +   input_from.value+ '", "from": "'+ visitorId +'" , "msg":"' + input.value + '","to":"' + input_to.value+'"}] }'
+        ws.send(JSON.stringify(msg));
         alert('弹幕已发送成功，请留意大屏幕')
         return false;
     });

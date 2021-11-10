@@ -51,7 +51,9 @@ var dynamicLoading = {
 }
 
 function initLotterySurface(lotteryList){
-	console.log("lotteryList: ",lotteryList)
+	if(isStart){
+		return
+	}
     //初始化皮肤
     /*if(localStorage.getItem("pf")){
 		var	pf = localStorage.getItem("pf");
@@ -169,7 +171,7 @@ function initLotterySurface(lotteryList){
 			if($("div.item:not(.ignore)").size()==0){
 				clearInterval(tx);
 				clearInterval(runtx);
-				runingmic.puase();
+				runingmic.pause();
 				
 				alert("抽奖已经全部结束。");
 				return false;
