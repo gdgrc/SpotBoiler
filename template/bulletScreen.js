@@ -66,7 +66,7 @@ window.addEventListener("load", function(evt) {
         bullet.animate({ 
             left:-1000//此处视为bug，应该随着弹幕的长短而变化 
             // 越大越慢
-        }, Math.round(Math.random()*5000)+7000,"linear", function(){ 
+        }, Math.round(Math.random()*4000)+8000,"linear", function(){ 
             bullet.remove(); 
         //当运动结束时，删除弹幕 
         }); 
@@ -101,7 +101,7 @@ window.addEventListener("load", function(evt) {
         if (!ws) {
             return false;
         }
-        msg = {"data_list":[{"fromName":input_from.value,"from":visitorId,"msg":input.value,"to":input_to.value}] }
+        msg = {"data_list":[{"fromName":input_from.value,"from":input_from.value,"msg":input.value,"to":input_to.value}] } //visitorId
         
         //msg='{"data_list":[{"fromName": "' +   input_from.value+ '", "from": "'+ visitorId +'" , "msg":"' + input.value + '","to":"' + input_to.value+'"}] }'
         ws.send(JSON.stringify(msg));
