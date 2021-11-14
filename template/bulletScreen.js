@@ -66,7 +66,7 @@ window.addEventListener("load", function(evt) {
         bullet.animate({ 
             left:-1000//此处视为bug，应该随着弹幕的长短而变化 
             // 越大越慢
-        }, Math.round(Math.random()*4000)+8000,"linear", function(){ 
+        }, Math.round(Math.random()*3000)+9000,"linear", function(){ 
             bullet.remove(); 
         //当运动结束时，删除弹幕 
         }); 
