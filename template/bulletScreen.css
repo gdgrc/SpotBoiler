@@ -43,7 +43,6 @@ background: url(1.jpg) no-repeat  top;
 position: relative; 
 background-size:contain;
 
-overflow: hidden; 
 } 
     
 .bullet{ 
