@@ -8,15 +8,12 @@
     <link rel="stylesheet" type="text/css" href="bulletScreen.css" />
 </head>
 <div class="content"></div> 
-<body scroll="yes">
+<body>
 <div class="readme hide">
 <p>▪ 按键盘空格键或者字母A可进行抽取,隐藏菜单请按ESC。</p>
 <p>▪ ESC菜单中高级设置可以设置参与人数，格子大小，重置抽奖数据等信息。</p>
 <p>▪ 点击已经中奖格子并输入点击的格子编号可取消该格子中奖状态，并清除中奖信息。</p>
-<p>▪ 中奖信息保存在本机上，如清理缓存活更换机器则记录将消失。</p>
-<p>▪ 请使用Chrome浏览器浏览，在投影仪上展示，请进入浏览器的全屏模式浏览。</p>
 </div>
-
 <div id="bodybg">
 <img src="./surface_lottery/images/bodybg1.jpg" class="stretch"/>
 </div>
@@ -31,7 +28,6 @@
     <label>清新典雅<input type="radio" name="pf" style="width:15px;" value="2"></label></p>
     <p class="line"><label><input type="checkbox" id="reset" value="1"/>重置已产生的抽奖数据</label></p>
 </div>
-
 <div class="top">抽奖</div>
 <div class="items"></div>
 <div class="menu">
@@ -44,8 +40,6 @@
         <ol></ol>
     </div>
 </div>
-
-
 <audio id="runingmic" class="hide" loop><source src="./surface_lottery/music/runing.wav"></audio>
 <audio id="pausemic" class="hide"><source src="./surface_lottery/music/stop.mp3"></audio>
 <script type="text/javascript" src="./surface_lottery/js/jquery.js"></script>
