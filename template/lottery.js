@@ -150,7 +150,7 @@ window.addEventListener("load", function(evt) {
                         continue;
                     } else if (sessionStorage.getItem(lottery_arr[lucky_numarrnew[i]][0])) { // 多次中奖处理机制
                         alert('命运石之门选中了【' + lottery_arr[lucky_numarrnew[i]][1] + '】' + '\n' +
-                            '但是你已经被啪过了！' +
+                            '但是你已经过了！' +
                             '\n' +
                             '喜新厌旧的萌萌兽并不想跟你交易第二次' +
                             '\n' + '点击确定换个人交易_(:з」∠)_');

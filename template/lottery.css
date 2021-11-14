@@ -16,15 +16,6 @@ input[type=checkbox] {
     line-height: 40px;
 }
 
-#content {
-    line-height: 30px;
-    background: mediumpurple;
-    text-align: center;
-    color: #fff;
-    padding: 10px;
-    padding-bottom: 0;
-}
-
 .clean,
 .boom {
     width: 100%;
@@ -105,6 +96,15 @@ input[type=checkbox] {
 .lottery_content {
     height: 370px;
     overflow: auto;
+}
+#content {
+    line-height: 30px;
+    background: mediumpurple;
+    text-align: center;
+    color: #0000;
+    padding: 10px;
+    padding-bottom: 0;
+    z-index: 500;
 }
 
 .danmu,

@@ -2,6 +2,10 @@
 padding: 0; 
 margin: 0; 
 } 
+
+
+
+
 .shooter{ 
 width: 600px; 
 height: 60px; 
@@ -34,7 +38,7 @@ background:#008000;
 } 
 .content{ 
 width: 100%; 
-height: 600px; 
+height: 1000px; 
 background: url(bg.png) no-repeat fixed top; 
 position: relative; 
 background-size:auto;

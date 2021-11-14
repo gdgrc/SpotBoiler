@@ -61,12 +61,12 @@ window.addEventListener("load", function(evt) {
         bullet.css("top",Math.round(Math.random()*500)); 
         //随机设置弹幕位置 
         bullet.css("left","1600px"); 
-        bullet.css("font-size",Math.round(Math.random()*60)+12+"px"); 
+        bullet.css("font-size",Math.round(Math.random()*52)+20+"px"); 
         bullet.css("color","rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")"); 
         bullet.animate({ 
             left:-1000//此处视为bug，应该随着弹幕的长短而变化 
             // 越大越慢
-        }, Math.round(Math.random()*9000)+3000,"linear", function(){ 
+        }, Math.round(Math.random()*5000)+7000,"linear", function(){ 
             bullet.remove(); 
         //当运动结束时，删除弹幕 
         }); 
