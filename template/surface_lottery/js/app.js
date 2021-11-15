@@ -193,7 +193,7 @@ function initLotterySurface(lotteryList){
 
 					//中奖号处理
 					
-					$('.ss ol').append('<b>'+it+'</b>');
+					$('.ss ol').append('<b>'+it+'</b></br>');
 				
 					r='<h2>恭喜 '+it+' 中奖！</h2>';
 					
@@ -203,7 +203,7 @@ function initLotterySurface(lotteryList){
 							okValue: '确定'
 						});
 					dd.show();
-					localStorage.setItem("sequence",$(".ss").html()); 
+					localStorage.setItem("sequence", $(".ss").html()); 
 					$(".item.active").addClass("ignore");
 					$(".item.active").pulsate({
 						color: zzs,        //#98ff98
