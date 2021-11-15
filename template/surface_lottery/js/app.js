@@ -201,6 +201,7 @@ function initLotterySurface(lotteryList){
 							title: '抽奖结果',
 							content: r,
 							okValue: '确定'
+						
 						});
 					dd.show();
 					localStorage.setItem("sequence", $(".ss").html()); 
