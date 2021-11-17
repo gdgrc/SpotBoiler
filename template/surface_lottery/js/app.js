@@ -52,6 +52,7 @@ var dynamicLoading = {
 
 function initLotterySurface(lotteryList){
 	if(isStart){
+		console.log("already start")
 		return
 	}
     //初始化皮肤
