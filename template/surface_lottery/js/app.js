@@ -51,7 +51,7 @@ var dynamicLoading = {
 }
 
 function initLotterySurface(lotteryList){
-	if(isRun){
+	if(isStart && isRun){
 		console.log("already start")
 		return
 	}
