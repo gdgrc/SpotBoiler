@@ -206,7 +206,7 @@ function initLotterySurface(lotteryList){
 						});
 					dd.show();
 					localStorage.setItem("sequence", $(".ss").html()); 
-					$(".item.active").addClass("ignore");
+					//$(".item.active").addClass("ignore");
 					$(".item.active").pulsate({
 						color: zzs,        //#98ff98
 						repeat: 5
@@ -214,7 +214,7 @@ function initLotterySurface(lotteryList){
 				}
 				
 			}else{
-				$(".active").removeClass("active");
+				//$(".active").removeClass("active");
 				runingmic.play();
 			}
 		}
