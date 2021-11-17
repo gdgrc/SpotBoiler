@@ -96,10 +96,13 @@ function initLotterySurface(lotteryList){
 	for(var i=0;i<lotteryListLength;i++){
 		var uid = lotteryList[i][0]
 		var index = $.inArray(uid, lotteryListLength)
-    	if (index == -1) {
-			$("div.items").append("<div class='item' data-id='"+lotteryList[i][0]+"'>"+lotteryList[i][1]+"</div>");
-		}else{
-			$("div.items").append("<div style='outline: 0px; box-shadow: rgba(152, 255, 152, 0) 0px 0px 13px; outline-offset: 20px;' class='item ignore' data-id='"+lotteryList[i][0]+"'>"+lotteryList[i][1]+"</div>");
+		$("div.items").append("<div id='itemid" +uid+ "' class='item i" + uid + "' data-id='"+lotteryList[i][0]+"'>"+lotteryList[i][1]+"</div>");
+    	if (index != -1) {
+			$("div.items.i"+ uid).addClass("ignore");
+			$("div.items.i"+ uid).pulsate({
+				color: zzs,        //#98ff98
+				repeat: 5
+			});
 		
 		}
     }
