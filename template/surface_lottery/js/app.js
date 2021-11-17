@@ -98,8 +98,10 @@ function initLotterySurface(lotteryList){
 		var index = $.inArray(uid, lotteryListLength)
 		$("div.items").append("<div id='itemid" +uid+ "' class='item i" + uid + "' data-id='"+lotteryList[i][0]+"'>"+lotteryList[i][1]+"</div>");
     	if (index != -1) {
-			$("div.items.i"+ uid).addClass("ignore");
-			$("div.items.i"+ uid).pulsate({
+			var c = "div.items.i"+ uid
+			console.log("alread uid " + c)
+			$(c).addClass("ignore");
+			$(c).pulsate({
 				color: zzs,        //#98ff98
 				repeat: 5
 			});
