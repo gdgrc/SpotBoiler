@@ -49,7 +49,7 @@ var dynamicLoading = {
         head.appendChild(script);
     }
 }
-
+var lotteryedList=[]
 function initLotterySurface(lotteryList){
 	if(isStart && isRun){
 		console.log("already start")
@@ -94,7 +94,14 @@ function initLotterySurface(lotteryList){
 	$("div.items").empty()
 	var lotteryListLength = lotteryList.length 
 	for(var i=0;i<lotteryListLength;i++){
-		$("div.items").append("<div class='item i"+lotteryList[i][0]+"'>"+lotteryList[i][1]+"</div>");
+		var uid = lotteryList[i][0]
+		var index = $.inArray(res.uid, lotteryListLength)
+    	if (index == -1) {
+			$("div.items").append("<div class='item' data-id='"+lotteryList[i][0]+"'>"+lotteryList[i][1]+"</div>");
+		}else{
+			$("div.items").append("<div style='outline: 0px; box-shadow: rgba(152, 255, 152, 0) 0px 0px 13px; outline-offset: 20px;' class='item ignore' data-id='"+lotteryList[i][0]+"'>"+lotteryList[i][1]+"</div>");
+		
+		}
     }
 	//本地存储item宽度信息
 	if(localStorage.getItem("itemk")){
@@ -183,7 +190,7 @@ function initLotterySurface(lotteryList){
 			if(!isRun){
 				//取得当前选中号码
 				var it = $(".item.active").text();
-				
+				var uid = $(".item.active").data('id')
 
 				if(it!=""){
 					//停止跑马灯
@@ -211,6 +218,7 @@ function initLotterySurface(lotteryList){
 						color: zzs,        //#98ff98
 						repeat: 5
 					});
+					lotteryedList.push(uid)
 				}
 				
 			}else{
