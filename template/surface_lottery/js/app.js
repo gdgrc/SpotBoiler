@@ -95,7 +95,7 @@ function initLotterySurface(lotteryList){
 	var lotteryListLength = lotteryList.length 
 	for(var i=0;i<lotteryListLength;i++){
 		var uid = lotteryList[i][0]
-		var index = $.inArray(uid, lotteryListLength)
+		var index = $.inArray(uid, lotteryedList)
 		$("div.items").append("<div id='itemid" +uid+ "' class='item i" + uid + "' data-id='"+lotteryList[i][0]+"'>"+lotteryList[i][1]+"</div>");
     	if (index != -1) {
 			var c = "div.items.i"+ uid
