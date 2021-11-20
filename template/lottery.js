@@ -1,5 +1,5 @@
 var lottery_arr = [
-/*	['OWYEW','OWYEW','',''],
+	/*['OWYEW','OWYEW','',''],
 	['ZBSCV','ZBSCV','',''],
 	['EITMY','EITMY','',''],
 	['TPALV','TPALV','',''],

@@ -60,7 +60,7 @@ window.addEventListener("load", function(evt) {
         bullet.css("top",Math.round(Math.random()*500)); 
         //随机设置弹幕位置 
         bullet.css("left","1600px"); 
-        bullet.css("font-size",Math.round(Math.random()*52)+20+"px"); 
+        bullet.css("font-size",Math.round(Math.random()*42)+60+"px"); 
         bullet.css("color","rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")"); 
         bullet.animate({ 
             left:-1000//此处视为bug，应该随着弹幕的长短而变化 
