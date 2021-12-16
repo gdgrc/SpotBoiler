@@ -47,10 +47,11 @@ type Client struct {
 	send chan []byte
 }
 type MessageSharing struct {
-	From    string `json:"from"`
-	To      string `json:"to"`
-	MsgType int    `json:"msg_type"`
-	Msg     string `json:"msg"`
+	From     string `json:"from"`
+	FromName string `json:"fromName"`
+	To       string `json:"to"`
+	MsgType  int    `json:"msg_type"`
+	Msg      string `json:"msg"`
 }
 type MessagePacket struct {
 	Result   int              `json:"result"`

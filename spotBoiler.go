@@ -3,6 +3,7 @@ package main
 import (
 	"SpotBoiler/onlineChat"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -31,6 +32,6 @@ func main() {
 	})
 	err := http.ListenAndServe(*addr, nil)
 	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
+		fmt.Println("ListenAndServe err: ", err, " *addr: ", *addr)
 	}
 }

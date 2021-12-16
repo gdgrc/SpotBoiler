@@ -1,3 +1,29 @@
+var fns = []
+function registerBulletFn(fn){
+    fns.push(fn)
+}
+
+var visitorId = ""
+
+const fpPromise = new Promise((resolve, reject) => {
+const script = document.createElement('script')
+script.onload = resolve
+script.onerror = reject
+script.async = true
+script.src = './fp.min.js'
+document.head.appendChild(script)
+})
+.then(() => FingerprintJS.load())
+
+// Get the visitor identifier when you need it.
+fpPromise
+.then(fp => fp.get())
+.then(result => {
+    // This is the visitor identifier:
+    visitorId= result.visitorId
+    
+})
+
 
 window.addEventListener("load", function(evt) {
     
@@ -22,40 +48,48 @@ window.addEventListener("load", function(evt) {
     }
     ws.onmessage = function(evt) {
         //取出输入框内容
+        
         var obj = JSON.parse(evt.data) 
+        console.log(evt.data)
         var bullet = $("<div>"); 
         //生成一条弹幕 
-        bullet.text(obj.from + ': ' + obj.msg); 
+        bullet.text("@" + obj.fromName + ': ' + obj.msg); 
         //将输入框内容放置到div中 
         bullet.addClass("bullet"); 
         //为bullet这个div添加样式bullet 
         bullet.css("top",Math.round(Math.random()*500)); 
         //随机设置弹幕位置 
         bullet.css("left","1600px"); 
-        bullet.css("font-size",Math.round(Math.random()*60)+12+"px"); 
+        bullet.css("font-size",Math.round(Math.random()*42)+60+"px"); 
         bullet.css("color","rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")"); 
         bullet.animate({ 
             left:-1000//此处视为bug，应该随着弹幕的长短而变化 
             // 越大越慢
-        }, Math.round(Math.random()*9000)+3000,"linear", function(){ 
+        }, Math.round(Math.random()*2000)+10000,"linear", function(){ 
             bullet.remove(); 
         //当运动结束时，删除弹幕 
         }); 
-        lotteryFilter({
-                      //cmd: body.cmd,
-                        //color: body.info[0][3],
-                        uid: obj.from,
-                        name: obj.from,
-                        //admin: body.info[2][2],
-                        //vip: body.info[2][3],
-                        //svip: body.info[2][4],
-                        text:"tezt",
-                        medal_name:  "没勋章",
-                        medal_level:  "0",
-                        //user_level: body.info[4][0],
-                        //guard: body.info[7],
-                        roomid: p_roomid,
-        }) 
+
+        var bulletData = {
+            //cmd: body.cmd,
+              //color: body.info[0][3],
+              uid: obj.from,
+              name: obj.fromName,
+              //admin: body.info[2][2],
+              //vip: body.info[2][3],
+              //svip: body.info[2][4],
+              text:"tezt",
+              medal_name:  "没勋章",
+              medal_level:  "0",
+              //user_level: body.info[4][0],
+              //guard: body.info[7],
+              roomid: p_roomid,
+        }
+        for (var i=0;i<fns.length;i++)
+        { 
+            fns[i](bulletData)
+        }
+        //lotteryFilter(bulletData) 
         $(".content")[0] && $(".content").append(bullet);
     }
     ws.onerror = function(evt) {
@@ -66,9 +100,10 @@ window.addEventListener("load", function(evt) {
         if (!ws) {
             return false;
         }
-
-        msg='{"data_list":[{"from": "'+ input_from.value +'" , "msg":"' + input.value + '","to":"' + input_to.value+'"}] }'
-        ws.send(msg);
+        msg = {"data_list":[{"fromName":input_from.value,"from":visitorId,"msg":input.value,"to":input_to.value}] } //visitorId
+        
+        //msg='{"data_list":[{"fromName": "' +   input_from.value+ '", "from": "'+ visitorId +'" , "msg":"' + input.value + '","to":"' + input_to.value+'"}] }'
+        ws.send(JSON.stringify(msg));
         alert('弹幕已发送成功，请留意大屏幕')
         return false;
     });

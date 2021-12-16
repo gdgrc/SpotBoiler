@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="utf-8">
 <title>快乐抽奖</title>
+
+	
 </head>
 <link rel="stylesheet" type="text/css" href="bulletScreen.css" />
 <link rel="stylesheet" type="text/css" href="lottery.css" />
@@ -42,11 +45,13 @@
 			<span style="display: inline-block; width: 49%;">中奖率：用户发送的弹幕数 / 总弹幕数</span>
 		</div>
 	</div>
+
+	<div class="items"></div>
     <div style="font-size: 0;">
-		<button class="start btn btn-success green">开启普通模式</button>
-		<button class="start btn btn-success darkgreen">开启刷爆模式</button>
+		<!--<button class="start btn btn-success green">开启普通模式</button>
+		<button class="start btn btn-success darkgreen">开启刷爆模式</button>-->
 		<!--<button class="end btn btn-danger">停止获取弹幕</button>-->
-		<button id="boom" class="boom btn btn-info">停止并黑幕一下</button>
+		<button id="boom" class="boom btn btn-info">开始抽奖</button>
 		<button class="clean btn btn-info">清空弹幕和抽奖池</button>
 	</div>
 	<div style="font-size: 0;">
@@ -68,6 +73,12 @@
 		</div>
 	</div>
 </body>
+
 <script type="text/javascript" src="lottery.js"></script>
 <script type="text/javascript" src="bulletScreen.js"></script>
+
+<script type="text/javascript" >
+registerBulletFn(lotteryFilter)
+</script>
+
 </html>
